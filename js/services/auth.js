@@ -7,25 +7,6 @@ app.factory('AuthFactory', function($http, $cookieStore, $cookies, $timeout, Use
 	}
 
 	return {
-		/*authorize: function(accessLevel, role) {
-		    if(role === undefined) {
-		        role = currentUser.role;
-		    }
-
-		    return accessLevel.bitMask & role.bitMask;
-		},*/
-		isLoggedIn: function(user) {
-		    if(user === undefined) {
-		        user = currentUser;
-		    }
-		    return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
-		},
-		/*register: function(user, success, error) {
-		    $http.post('/register', user).success(function(res) {
-		        changeUser(res);
-		        success();
-		    }).error(error);
-		},*/
 		login: function(user, success, error) {
    			$cookieStore.remove('user');
    			user.username = user.email;
@@ -40,16 +21,14 @@ app.factory('AuthFactory', function($http, $cookieStore, $cookies, $timeout, Use
 		},
 		logout: function(success, error) {
    			$cookieStore.remove('user');
-		    //$http.post('/logout').success(function(){
+		    $http.post(API_URL + '/users/logout').success(function(){
 		        changeUser({
 		            email: '',
-		            fullname : ''
+		            id : ''
 		        });
 		        success();
-		    //}).error(error);
+		    }).error(error);
 		},
-		/*accessLevels: accessLevels,
-		userRoles: userRoles,*/
 		user: currentUser
 	};
 });
