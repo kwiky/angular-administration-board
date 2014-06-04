@@ -1,5 +1,5 @@
 //var API_URL = 'http://localhost:3000';
-var API_URL = '/api-mocks'
+var API_URL = '/api-mocks';
 
 var app = angular.module('admin', [
   'ngCookies',
