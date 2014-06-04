@@ -1,0 +1,183 @@
+body {
+	font-size: 14px;
+	line-height: 1.42857;
+	color: #767676;
+	background-color: #f3f3f3;
+}
+
+h1 {
+	padding:5px;
+	margin:0px;
+	font-size:24px;
+}
+
+header.specific {
+	padding: 25px;
+}
+
+header.specific h1 {
+	font-size:40px;
+}
+
+#nav-container {
+	z-index: 11;
+	position: absolute;
+	top: 50px;
+	bottom: 0;
+	left: -220px;
+	width: 220px;
+	padding: 0;
+	background-color: #242633;
+	-webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: -blackberry-touch;
+	height:100%;
+}
+
+#nav {
+	height:100%;
+	overflow:hidden;
+	list-style: none;
+	padding-left: 0;
+}
+
+#nav a {
+	font-size: 13px;
+	color: #767676;
+}
+
+#nav>li {
+	position: relative;
+	margin: 0;
+	text-align: left;
+	font-weight: bold;
+}
+
+#nav>li>a {
+	position: relative;
+	display: block;
+	padding: 15px 15px;
+}
+
+#nav>li.active>a {
+	color: #31c0be;
+}
+
+#nav>li>a>i, #nav>li>a>.nav-icon {
+	display: inline-block;
+	margin-right: 10px;
+	width: 20px;
+	line-height: 1;
+	text-align: center;
+	font-size: 16px;
+}
+
+#nav>li>a>.badge {
+	position: absolute;
+	top: 16px;
+	right: 5px;
+}
+
+#nav ul {
+	list-style: none;
+	padding-left: 40px;
+}
+
+#nav ul li>a i.fa-caret-right {
+	margin-right: 10px;
+}
+
+#nav .users ul {
+	display:none;
+}
+#nav .users.active ul {
+	display:block;
+}
+
+.badge-info {
+	background-color: #31c0be;
+}
+.badge-danger {
+	background-color: #e87352;
+}
+
+.input-group-addon, .form-control, .btn, .input-group-lg>.input-group-addon, .input-group-lg>.form-control  {
+	border-radius: 0px;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #31c0be;
+	border-color: #2cacaa;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+	color:#fff;
+	background-color:#299f9e;
+	border-color:#1f7b7a;
+}
+
+.btn-primary:disabled {
+	background-color:#7CC5C4;
+	border-color:#82ADAD;
+}
+
+.form-control:focus {
+	border-color:#31c0be;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+}
+
+.page-signin {
+	max-width:420px;
+	margin: 10px auto;
+}
+
+.mini-box {
+	min-height: 105px;
+	padding: 20px;
+}
+
+.panel {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 0;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+form.panel {
+	padding:10px;
+}
+
+.mini-box .box-icon {
+	display: block;
+	float: left;
+	margin: 0 15px 10px 0;
+	width: 65px;
+	height: 65px;
+	line-height: 65px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 35px;
+}
+
+.mini-box .box-icon.users {
+	background-color: #66b5d7;
+	color: #fff;
+}
+
+.mini-box .box-info p {
+	margin: 0;
+}
+
+.size-h2 {
+	font-size: 30px;
+}
+
+@media (min-width: 768px) {
+	#nav-container {
+	left: 0;
+	}
+}
