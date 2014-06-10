@@ -5,7 +5,7 @@ An administration board build with angular, bootstrap and others stuff
 
 Demo here : http://kwiky.github.io/angular-administration-board
 
-Works great with Deployd : http://deployd.com/
+Works great with Loopback : http://loopback.io/
 
 == Instructions ==
 

@@ -7,7 +7,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
                 email: $scope.email,
                 password: $scope.password
             },
-            function(res) {
+            function(user) {
                 $location.path('/');
             },
             function(err) {
@@ -30,13 +30,11 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
                 delete user.$promise;
                 delete user.$resolved;
 		    	$scope.user = user;
-                $scope.user.email = $scope.user.username;
 			}
 		);
     }
 
     $scope.save = function() {
-        $scope.user.username = $scope.user.email;
     	UserFactory.update(
     		{id : $scope.user.id}, 
     		$scope.user,
@@ -47,7 +45,6 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
     }
 
     $scope.create = function() {
-        $scope.user.username = $scope.user.email;
     	UserFactory.save(null, 
     		$scope.user,
     		function(user) {

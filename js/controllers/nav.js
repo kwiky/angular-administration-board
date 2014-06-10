@@ -1,14 +1,20 @@
-app.controller('NavCtrl', function($rootScope, $scope, $location, AuthFactory, UserFactory) {
-    $rootScope.currentUser = AuthFactory.user;
+app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFactory, UserFactory) {
+    $rootScope.currentUser = AuthFactory.getUser();
+    $rootScope.token = AuthFactory.getToken();
 
     // Redirect to login if not logged
-    if (!$rootScope.currentUser || !$rootScope.currentUser.id) $location.path('/login');
+    if (!$rootScope.token) $location.path('/login');
+    else {
+        $http.defaults.headers.common.Authorization = $rootScope.token.id;
+    }
 
     $scope.logout = function() {
         AuthFactory.logout(
-            function(res) {
-                $rootScope.currentUser = AuthFactory.user;
+            function() {
                 $location.path('/');
+            },
+            function(err) {
+                toastr.error('Failed to logout');
             }
         );
     };
@@ -30,7 +36,7 @@ app.controller('NavCtrl', function($rootScope, $scope, $location, AuthFactory, U
     }
 
     $scope.init = function() {
-        if ($rootScope.currentUser && $rootScope.currentUser.id) {
+        if ($rootScope.token) {
             UserFactory.query(
                 function(users) {
                     $rootScope.users = users;
@@ -38,4 +44,5 @@ app.controller('NavCtrl', function($rootScope, $scope, $location, AuthFactory, U
             );
         }
     }
+
 });

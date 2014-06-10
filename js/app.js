@@ -1,5 +1,5 @@
 //var API_URL = 'http://localhost:3000';
-var API_URL = '/api-mocks';
+var API_URL = 'http://loopback-sandbox.steve-grosbois.com';
 
 var app = angular.module('admin', [
   'ngCookies',
@@ -18,13 +18,12 @@ config(function($httpProvider, $routeProvider) {
 	.otherwise({redirectTo: '/'});
 
   $httpProvider.defaults.useXDomain = true;
-  $httpProvider.defaults.withCredentials= true;
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+  $httpProvider.defaults.headers.common.Authorization = '';
   $httpProvider.defaults.transformRequest = function(data) {
       if (data === undefined) {
           return data;
       }
-      console.log(data);
       return $.param(data);
   }
 });
