@@ -1,6 +1,6 @@
 <table class="table table-striped" ng-init="all()">
-	<tr class="user" ng-repeat="user in users | orderBy:'username'">
-		<td><a href="#/users/{{user.id}}">{{user.username}}</a></td>
+	<tr class="user" ng-repeat="user in users | orderBy:'email'">
+		<td><a href="#/users/{{user.id}}">{{user.email}}</a></td>
 		<td class="text-right"><button class="btn btn-danger" ng-click="delete(user)"><i class="fa fa-trash-o"></i> Delete</button></td>
 	</tr>
 </table>
