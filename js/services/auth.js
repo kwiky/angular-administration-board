@@ -13,13 +13,11 @@ app.factory('AuthFactory', function($http, $rootScope, $cookieStore, $cookies, $
 						// Get roles
 						RoleMappingFactory.query({userId : user.id},
 							function (roleMappings) {
-								console.log(roleMappings);
 								angular.forEach(roleMappings, function (roleMapping) {
 									if (roleMapping.principalId = user.id) {
 										user.roles.push($rootScope.roles[roleMapping.roleId].name);
 									}
 								});
-								console.log(user);
 								$cookieStore.put('user', user);
 								$rootScope.currentUser = user;
 								success(user);
