@@ -1,29 +1,43 @@
-app.factory('AuthFactory', function($http, $rootScope, $cookieStore, $cookies, $timeout, UserFactory) {
+app.factory('AuthFactory', function($http, $rootScope, $cookieStore, $cookies, $timeout, UserFactory, RoleMappingFactory) {
 	return {
 		login: function(user, success, error) {
-   			$cookieStore.remove('token');
-		    $http.post(API_URL + '/users/login', user).success(function(token) {
-   				$cookieStore.put('token', token);
-		        $rootScope.token = token;
-   				$http.defaults.headers.common.Authorization = token.id;
-   				UserFactory.get({id : token.userId},
-		            function(user) {
-		            	$cookieStore.put('user', user);
-		            	$rootScope.currentUser = user;
-				        success(user);
-		            }
-		        );
-		    }).error(error);
+			$cookieStore.remove('token');
+			$http.post(API_URL + '/users/login', user).success(function(token) {
+				$cookieStore.put('token', token);
+				$rootScope.token = token;
+				$http.defaults.headers.common.Authorization = token.id;
+				// Get user
+				UserFactory.get({id : token.userId},
+					function(user) {
+						user.roles = [];
+						// Get roles
+						RoleMappingFactory.query({userId : user.id},
+							function (roleMappings) {
+								console.log(roleMappings);
+								angular.forEach(roleMappings, function (roleMapping) {
+									if (roleMapping.principalId = user.id) {
+										user.roles.push($rootScope.roles[roleMapping.roleId].name);
+									}
+								});
+								console.log(user);
+								$cookieStore.put('user', user);
+								$rootScope.currentUser = user;
+								success(user);
+							}
+						);
+					}
+				);
+			}).error(error);
 		},
 		logout: function(success, error) {
-		    $http.post(API_URL + '/users/logout').success(function(){
-   				$cookieStore.remove('token');
-   				$cookieStore.remove('user');
-		        $rootScope.token = null;
-		        $rootScope.currentUser = null;
-   				$http.defaults.headers.common.Authorization = '';
-		        success();
-		    }).error(error);
+			$http.post(API_URL + '/users/logout').success(function(){
+				$cookieStore.remove('token');
+				$cookieStore.remove('user');
+				$rootScope.token = null;
+				$rootScope.currentUser = null;
+				$http.defaults.headers.common.Authorization = '';
+				success();
+			}).error(error);
 		},
 		getUser: function() {
 			if(!$rootScope.currentUser) {

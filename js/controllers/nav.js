@@ -1,10 +1,25 @@
-app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFactory, UserFactory) {
+app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFactory, UserFactory, RoleFactory) {
     $rootScope.currentUser = AuthFactory.getUser();
     $rootScope.token = AuthFactory.getToken();
+    $rootScope.roles = [];
+    $rootScope.users = null;
+
+    // Get roles
+    RoleFactory.query(
+        function(roles) {
+            angular.forEach(roles, function (role) {
+                if (role.id) {
+                    $rootScope.roles[role.id] = role;
+                }
+            });
+        }
+    );
 
     // Redirect to login if not logged
-    if (!$rootScope.token) $location.path('/login');
-    else {
+    if (!$rootScope.token) {
+        $rootScope.currentUser = null;
+        $location.path('/login');
+    } else {
         $http.defaults.headers.common.Authorization = $rootScope.token.id;
     }
 
