@@ -51,8 +51,8 @@ app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFac
     }
 
     $scope.init = function() {
-        if ($rootScope.token) {
-            if (currentUser.is('admin')) {
+        if ($rootScope.token && $rootScope.currentUser) {
+            if ($rootScope.currentUser.is('admin')) {
                 UserFactory.query(
                     function(users) {
                         $rootScope.users = users;
