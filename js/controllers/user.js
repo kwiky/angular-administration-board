@@ -17,11 +17,13 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
     };
 
     $scope.all = function() {
-    	UserFactory.query(
-    		function(users) {
-		    	$scope.users = users;
-			}
-		);
+        if (!$rootScope.users) {
+        	UserFactory.query(
+        		function(users) {
+    		    	$rootScope.users = users;
+    			}
+    		);
+        }
     }
 
     $scope.edit = function() {
@@ -48,6 +50,7 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
     	UserFactory.save(null, 
     		$scope.user,
     		function(user) {
+                $rootScope.users.push(user);
 		    	$location.path('/users');
 			}
 		);
@@ -57,8 +60,8 @@ app.controller('UserCtrl', function ($rootScope, $scope, $location, $routeParams
     	UserFactory.remove(
     		{id : user.id}, 
     		function() {
-		    	var index = $scope.users.indexOf(user);
-  				$scope.users.splice(index, 1);
+		    	var index = $rootScope.users.indexOf(user);
+  				$rootScope.users.splice(index, 1);
 			}
 		);
     }
