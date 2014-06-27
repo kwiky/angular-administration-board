@@ -18,6 +18,9 @@ app.factory('AuthFactory', function($http, $rootScope, $cookieStore, $cookies, $
 										user.roles.push($rootScope.roles[roleMapping.roleId].name);
 									}
 								});
+								user.is = function(role) {
+									return (this.roles.indexOf(role) > -1);
+								}
 								$cookieStore.put('user', user);
 								$rootScope.currentUser = user;
 								success(user);

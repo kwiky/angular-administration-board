@@ -1,13 +1,13 @@
 <div class="row" ng-init="init()">
-  <div class="col-md-4">
-  	<div class="panel mini-box">
-		<span class="box-icon users"><i class="fa fa-users"></i></span>
-		<div class="box-info">
-            <p class="size-h2">{{users.length}}</p>
-            <p class="text-muted">Users</p>
-        </div>
-  	</div>
-  </div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="panel mini-box" ng-show="currentUser.is('admin')">
+			<span class="box-icon users"><i class="fa fa-users"></i></span>
+			<div class="box-info">
+				<p class="size-h2">{{users.length}}</p>
+				<p class="text-muted">Users</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
 </div>

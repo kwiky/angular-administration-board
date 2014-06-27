@@ -52,11 +52,13 @@ app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFac
 
     $scope.init = function() {
         if ($rootScope.token) {
-            UserFactory.query(
-                function(users) {
-                    $rootScope.users = users;
-                }
-            );
+            if (currentUser.is('admin')) {
+                UserFactory.query(
+                    function(users) {
+                        $rootScope.users = users;
+                    }
+                );
+            }
         }
     }
 
