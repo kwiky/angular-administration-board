@@ -1,0 +1,6 @@
+<table class="table table-striped" ng-init="all()">
+	<tr class="category" ng-repeat="category in categories | orderBy:'name'">
+		<td><a href="#/categories/{{category.id}}">{{category.name}}</a></td>
+		<td class="text-right"><button class="btn btn-danger" ng-click="delete(category)"><i class="fa fa-trash-o"></i> Delete</button></td>
+	</tr>
+</table>

@@ -8,6 +8,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4"></div>
-	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="panel mini-box" ng-show="currentUser">
+			<span class="box-icon categories"><i class="fa fa-folder"></i></span>
+			<div class="box-info">
+				<p class="size-h2">{{categories.length}}</p>
+				<p class="text-muted">Categories</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel mini-box" ng-show="currentUser">
+			<span class="box-icon expressions"><i class="fa fa-file"></i></span>
+			<div class="box-info">
+				<p class="size-h2">0</p>
+				<p class="text-muted">Expressions</p>
+			</div>
+		</div>
+	</div>
 </div>

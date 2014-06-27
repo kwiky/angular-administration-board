@@ -1,8 +1,9 @@
-app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFactory, UserFactory, RoleFactory) {
+app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFactory, UserFactory, RoleFactory, CategoryFactory) {
     $rootScope.currentUser = AuthFactory.getUser();
     $rootScope.token = AuthFactory.getToken();
     $rootScope.roles = [];
     $rootScope.users = null;
+    $rootScope.categories = null;
 
     // Get roles
     RoleFactory.query(
@@ -56,6 +57,13 @@ app.controller('NavCtrl', function($http, $rootScope, $scope, $location, AuthFac
                 UserFactory.query(
                     function(users) {
                         $rootScope.users = users;
+                    }
+                );
+            }
+            if (!$rootScope.categories) {
+                CategoryFactory.query(
+                    function(categories) {
+                        $rootScope.categories = categories;
                     }
                 );
             }

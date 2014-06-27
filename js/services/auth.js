@@ -43,8 +43,10 @@ app.factory('AuthFactory', function($http, $rootScope, $cookieStore, $cookies, $
 		getUser: function() {
 			if(!$rootScope.currentUser) {
 				$rootScope.currentUser = $cookieStore.get('user');
-				$rootScope.currentUser.is = function(role) {
-					return (this.roles.indexOf(role) > -1);
+				if($rootScope.currentUser) {
+					$rootScope.currentUser.is = function(role) {
+						return (this.roles.indexOf(role) > -1);
+					}
 				}
 			}
 			return $rootScope.currentUser;

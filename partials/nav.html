@@ -1,9 +1,15 @@
-<ul id="nav" ng-controller="NavCtrl" data-slim-scroll="" data-collapse-nav="" data-highlight-active="" class="ng-scope" style="overflow: hidden; width: auto; height: 100%;">
+<ul id="nav" ng-controller="NavCtrl" data-slim-scroll="" data-collapse-nav="" data-highlight-active="" class="ng-scope">
     <li ng-class="getClass('/')"><a href="#/"> <i class="fa fa-dashboard"></i>Dashboard</a></li>
     <li ng-class="getClass('/users')" ng-show="currentUser.is('admin')">
     	<a href="#/users"> <i class="fa fa-users"></i>Users<span class="badge badge-info main-badge ng-binding" ng-show="users.length > 0">{{users.length}}</span></a>
     	<ul>
             <li class=""><a href="#/users/add"><i class="fa fa-caret-right"></i>Create an user</a></li>
+        </ul>
+    </li>
+    <li ng-class="getClass('/categories')" ng-show="currentUser">
+    	<a href="#/categories"> <i class="fa fa-folder"></i>Categories<span class="badge badge-info main-badge ng-binding" ng-show="categories.length > 0">{{categories.length}}</span></a>
+    	<ul>
+            <li class=""><a href="#/categories/add"><i class="fa fa-caret-right"></i>Create a category</a></li>
         </ul>
     </li>
 </ul>
