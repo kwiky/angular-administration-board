@@ -17,7 +17,6 @@ app.controller('CategoryCtrl', function ($rootScope, $scope, $location, $routePa
                 delete category.$promise;
                 delete category.$resolved;
 		    	$scope.category = category;
-                console.log($scope.category);
 			}
 		);
     }
@@ -27,7 +26,6 @@ app.controller('CategoryCtrl', function ($rootScope, $scope, $location, $routePa
     		{id : $scope.category.id}, 
     		{name: $scope.category.name},
     		function(category) {
-                console.log($scope.category);
 		    	$location.path('/categories');
 			}
 		);
